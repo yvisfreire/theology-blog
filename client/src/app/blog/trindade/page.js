@@ -1,0 +1,25 @@
+export default function TrindadePost() {
+    return (
+        <div className="flex flex-col items-center">
+            <div className="relative flex flex-col items-center justify-center px-5 text-white h-96 w-full bg-cover bg-[50%_25%] bg-no-repeat bg-[url('https://miro.medium.com/v2/resize:fit:640/format:webp/1*uhcMBpAbF7wbL-KcPLqnHw.png')]">
+                <div className="absolute inset-0 bg-black opacity-50" />
+                <h1 className="relative text-center text-4xl font-black leading-none pt-5">Vestígios da Trindade no Antigo Testamento</h1>
+                <p className="relative text-center text-gray-300">Sobre a unidade e a continuidade da autorrevelação trinitária de Deus em ambos Testamentos</p>
+            </div>
+            <div className="px-8 lg:w-[60%] md:w-[80%]">
+                <p className="">Por Yvis Freire em 31/12/2023</p>
+                <h2 className="text-2xl font-black leading-none py-5">Introdução</h2>
+                <p>Geralmente, uma das críticas à doutrina da Trindade aponta para uma suposta descontinuidade em relação ao que é apresentado na Bíblia Hebraica. Argumenta-se que esta doutrina seria uma quebra do monoteísmo judaico, uma inovação posterior ou um reflexo da influência da filosofia grega. Diante disso, este artigo visa elucidar e discutir os sinais de diversidade na unidade da natureza divina, destacando a unidade e continuidade da autorrevelação de Deus nos dois Testamentos.</p>
+                <h2 className="text-2xl font-black leading-none py-5">O Sehmá</h2>
+                <p>Uma das afirmações mais emblemáticas do monoteísmo judaico no Antigo Testamento está contida no Shemá: “Ouça, ó Israel: O Senhor, o nosso Deus, é o único Senhor” (Dt 6:4 NVI). Embora, à primeira vista, o texto não pareça indicar a possibilidade de um Deus trino, com uma análise mais aprofundada é possível observar que este não é o caso.</p>
+                <p>Primeiro, dada a tendência idólatra de Israel, é vital entender que a ênfase na singularidade de Deus não é meramente quantitativa, mas qualitativa: Yahweh é o único verdadeiro Deus e digno de adoração¹. Segundo, o termo hebraico para “único” (echad) não implica necessariamente absoluta singularidade, mas permite uma pluralidade dentro dessa unidade². Um exemplo deste conceito pode ser visto em Gênesis 2.24, onde o homem e sua mulher, em sua pluralidade, se tornam uma só carne, uma unidade: “Por essa razão, o homem deixará pai e mãe e se unirá à sua mulher, e eles se tornarão uma só carne.” (Gn 2:24 NVI). Ou seja, a passagem não contradiz a noção de um Deus trino.</p>
+                <h2 className="text-2xl font-black leading-none py-5">O Anjo de Yahweh</h2>
+                <p>O “anjo do Senhor” ou “anjo de Yahweh” é uma das figuras mais proeminentes dentre as teofanias no Antigo Testamento. O Anjo de Yahweh é um representante/mensageiro de Deus que tem um papel de destaque ao longo da narrativa veterotestamentária. Ele tanto se distingue de Yahweh, falando dele na terceira pessoa, como também se identifica com YHWH, falando dele na primeira pessoa³, além de compartilhar de seus atributos e receber adoração⁴. Portanto, como Geerhardus Vos sugere: “nós devemos assumir que, por trás da dupla representação existe uma multiplicidade real na vida interior da deidade” (VOS, 2010, p. 97).</p>
+                <h2 className="text-2xl font-black leading-none py-5">Uma leitura trinitária das Escrituras</h2>
+                <p>Ao interpretar textos aparentemente trinitários no Antigo Testamento, corre-se o risco de cair em anacronismo, ou seja, ler o texto bíblico do AT fora de seu contexto e de seu lugar na história da redenção. Embora a revelação plena em Cristo ilumine nossa compreensão, é essencial reconhecer o desenvolvimento progressivo da revelação divina. Ao longo do AT, o texto bíblico tem por foco enfatizar a unicidade de Deus ao povo de Israel, pois muito provavelmente este tomaria a revelação prematura de um Deus em três pessoas como uma tentação ao politeísmo⁵. Portanto, tais textos não devem ser lidos como declarações explícitas da Trindade, mas sim como uma preparação da mentalidade do povo judeu para a plenitude de quem Deus é tal como o conhecemos por meio do NT. Os judeus não tinham a identidade de Deus bem resolvida, havia um suspense, uma sede por quem Deus é, seu nome, sua face, sua glória. Tudo isso culminou e foi satisfeito na pessoa de Cristo⁶.</p>
+                <h2 className="text-2xl font-black leading-none py-5">Conclusão</h2>
+                <p>Em conclusão, a revelação neotestamentária da natureza de Deus continua, cumpre e esclarece o que foi revelado no Antigo Testamento. A doutrina da Trindade não apenas encontra respaldo em ambos os Testamentos, como também não foi completamente estranha à mentalidade do povo de Deus na antiga aliança. O Deus que se revelou no Antigo Testamento é o mesmo que se manifesta de forma mais completa no Novo Testamento. Em Deus não há mudança nem sombra de variação, mas no progresso de sua revelação ele se torna cada vez mais claro e mais glorioso ao seu povo⁷.</p>
+            </div>
+        </div>
+    );
+}
