@@ -2,7 +2,11 @@ import { prisma } from '../database/index.js';
 import slugify from 'slugify';
 
 const getAllPosts = async (req, res) => {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
 
     return res.json(posts);
 };
