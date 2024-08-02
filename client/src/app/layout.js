@@ -11,6 +11,9 @@ const merriweather = Merriweather({
 export const metadata = {
   title: "Teologia com Limonada",
   description: "Homepage do blog",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
