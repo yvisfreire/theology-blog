@@ -6,7 +6,7 @@ export default function TrindadePost() {
                 <h1 className="relative text-center text-4xl font-black leading-none pt-5">Vestígios da Trindade no Antigo Testamento</h1>
                 <p className="relative text-center text-gray-300">Sobre a unidade e a continuidade da autorrevelação trinitária de Deus em ambos Testamentos</p>
             </div>
-            <div className="px-8 lg:w-[60%] md:w-[80%]">
+            <div className="px-8 lg:w-[60%] md:w-[80%] w-full">
                 <p className="">Por Yvis Freire em 31/12/2023</p>
                 <h2 className="text-2xl font-black leading-none py-5">Introdução</h2>
                 <p>Geralmente, uma das críticas à doutrina da Trindade aponta para uma suposta descontinuidade em relação ao que é apresentado na Bíblia Hebraica. Argumenta-se que esta doutrina seria uma quebra do monoteísmo judaico, uma inovação posterior ou um reflexo da influência da filosofia grega. Diante disso, este artigo visa elucidar e discutir os sinais de diversidade na unidade da natureza divina, destacando a unidade e continuidade da autorrevelação de Deus nos dois Testamentos.</p>

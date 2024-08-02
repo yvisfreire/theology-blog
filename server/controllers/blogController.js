@@ -2,7 +2,7 @@ import { prisma } from '../database/index.js';
 import slugify from 'slugify';
 
 const getAllPosts = async (req, res) => {
-    let posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany();
 
     return res.json(posts);
 };
@@ -10,7 +10,7 @@ const getAllPosts = async (req, res) => {
 const getPost = async (req, res) => {
     const { slug } = req.params;
 
-    let post = await prisma.post.findUnique({ where: { slug } });
+    const post = await prisma.post.findUnique({ where: { slug } });
 
     if (!post) return res.json({ error: "Post não encontrado." });
 
@@ -18,12 +18,16 @@ const getPost = async (req, res) => {
 }
 
 const createPost = async (req, res) => {
-    const { title, content } = req.body;
+    const { title, subtitle, imgUrl, content, published } = req.body;
 
-    let post = await prisma.post.create({
+    console.log(req.body)
+    const post = await prisma.post.create({
         data: {
             title,
+            subtitle,
+            imgUrl,
             content,
+            published,
             slug: slugify(title, { lower: true })
         }
     });
@@ -33,11 +37,9 @@ const createPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
     const { slug } = req.params;
-    let { title, content, published } = req.body;
+    const { title, subtitle, imgUrl, content, published } = req.body;
 
     let post = await prisma.post.findUnique({ where: { slug } });
-
-    published = undefined;
 
     if (!post) return res.json({ error: "Post não encontrado." });
 
@@ -45,8 +47,11 @@ const updatePost = async (req, res) => {
         where: { slug },
         data: {
             title,
+            subtitle,
+            imgUrl,
             content,
-            published
+            published,
+            slug: slugify(title, { lower: true })
         }
     });
 
@@ -56,7 +61,7 @@ const updatePost = async (req, res) => {
 const deletePost = async (req, res) => {
     const { slug } = req.params;
 
-    let post = await prisma.post.findUnique({ where: { slug } });
+    const post = await prisma.post.findUnique({ where: { slug } });
 
     if (!post) return res.json({ error: "Post não encontrado." });
 

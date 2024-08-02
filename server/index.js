@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import * as dotenv from 'dotenv';
 import { blogRouter } from './routes/blogRoutes.js';
 
@@ -6,6 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 app.use(blogRouter);
 
 app.get('/', (req, res) => {
