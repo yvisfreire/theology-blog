@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 export default function PostCard({ post }) {
+    console.log(post.imgUrl);
+
     const date = new Date(post.createdAt);
 
     return (
@@ -11,7 +13,7 @@ export default function PostCard({ post }) {
             <div className="flex flex-col flex-grow justify-between h-32 px-4 py-4">
                 <Link href={`/dashboard/write/${post.slug}`} className="font-bold text-sm mb-2">{post.title}</Link>
                 <div className="flex justify-center items-center gap-2">
-                    <img src="/blank-profile.png" alt="Foto de perfil" className="h-8 w-8 rounded-full"></img>
+                    <img src="/blank-profile.png" alt="Profile picture" className="h-8 w-8 rounded-full"></img>
                     <p className="text-gray-700 text-xs">
                         Yvis Freire
                     </p>

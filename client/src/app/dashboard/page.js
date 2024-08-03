@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import PostCard from "@/components/PostCard";
+import PostCardDashboard from "@/components/PostCardDashboard";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
@@ -22,7 +22,7 @@ export default function Dashboard() {
         fetchData();
     }, [])
 
-    const postCards = posts.map(post => <PostCard key={post.id} post={post} />)
+    const postCards = posts.map(post => <PostCardDashboard key={post.id} post={post} />)
     return (
         <div className="flex flex-col items-center">
             <div className="relative flex flex-col items-center justify-center text-white h-96 w-full bg-cover bg-center bg-no-repeat bg-[url('/plantando.jpg')]">

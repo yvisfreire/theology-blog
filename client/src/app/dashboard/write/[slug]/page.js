@@ -6,7 +6,8 @@ export async function generateMetadata({ params }) {
     const data = await response.json();
 
     return {
-        title: data.title
+        title: data.title,
+        description: data.subtitle
     }
 }
 

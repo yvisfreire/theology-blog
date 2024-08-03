@@ -1,27 +1,37 @@
-export default function Post() {
+import { MDXRemote } from 'next-mdx-remote/rsc';
+
+export default async function Post({ params }) {
+    const { slug } = params;
+    const response = await fetch(`http://localhost:5000/blog/${slug}`);
+    const data = await response.json();
+
+    const date = new Date(data.createdAt);
+
     return (
-        <div>
-            <div className="relative flex flex-col items-center justify-center text-white h-screen w-full bg-cover bg-[50%_25%] bg-no-repeat bg-[url('https://miro.medium.com/v2/resize:fit:640/format:webp/1*uhcMBpAbF7wbL-KcPLqnHw.png')]">
+        <div className="flex flex-col items-center">
+            <div style={{ '--image-url': `url(${data.imgUrl})` }}
+                className="relative flex flex-col items-center justify-center px-4 mb-8 text-white h-96 w-full bg-cover bg-[50%_25%] bg-no-repeat bg-[image:var(--image-url)]">
                 <div className="absolute inset-0 bg-black opacity-50" />
-                <h1 className="relative text-4xl font-black leading-none py-5">Título</h1>
-                <p className="relative">Por Autor</p>
-                <p className="relative">Em 01/01/1970</p>
+                <h1 className="relative text-center text-4xl font-black leading-none pt-5">{data.title}</h1>
+                <p className="relative text-center text-gray-300">{data.subtitle}</p>
             </div>
-            <div className="p-4 mx-64 my-4">
-                <h2 className="text-4xl font-black leading-none py-5">Seção</h2>
-                <p className="text-justify indent-16">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque vitae libero sit amet sapien sagittis volutpat.
-                    Vestibulum nibh turpis, tempus pulvinar mauris eget, imperdiet
-                    iaculis sem. Quisque lobortis vitae nisl rutrum pharetra.
-                    Vivamus bibendum rhoncus fermentum. Integer id est ex. Nam id
-                    turpis quis sem dignissim porta sed ac massa. Donec lectus felis,
-                    venenatis eget malesuada non, porta at quam. Mauris vel fermentum
-                    arcu. Cras vestibulum volutpat odio quis ultrices. Proin augue
-                    mauris, tempus vel ultrices vitae, posuere eget libero. Duis
-                    sollicitudin lectus dignissim metus ultrices faucibus nec in
-                    odio.
-                </p>
+            <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-12">
+                <div className="flex justify-between w-full">
+                    <div className="flex items-center gap-2">
+                        <img src="/blank-profile.png" alt="Foto de perfil" className="h-10 w-10 rounded-full"></img>
+                        <p className="text-gray-700 text-sm">
+                            Yvis Freire
+                        </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <p className="text-gray-700 text-sm">4 min</p>
+                        <p className="text-gray-700 text-sm">·</p>
+                        <p className="text-gray-700 text-sm">{date.toLocaleDateString()}</p>
+                    </div>
+                </div>
+                <div className="py-8 max-w-none prose prose-a:text-green-600 hover:prose-a:text-green-700 transition-all">
+                    <MDXRemote source={data.content} />
+                </div>
             </div>
         </div>
     );
