@@ -2,7 +2,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export default async function Post({ params }) {
     const { slug } = params;
-    const response = await fetch(`http://localhost:5000/blog/${slug}`);
+    const response = await fetch(`http://localhost:5000/blog/${slug}`, { cache: 'no-store' });
     const data = await response.json();
 
     const date = new Date(data.createdAt);
