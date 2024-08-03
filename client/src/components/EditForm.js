@@ -60,8 +60,8 @@ export default function EditForm({ params }) {
     }
 
     return (
-        <div className="flex justify-center">
-            <form onSubmit={onSubmit} className="px-8 lg:w-[60%] md:w-[75%] w-full">
+        <div className="flex justify-center bg-gray-50">
+            <form onSubmit={onSubmit} className="px-8 lg:w-[60%] md:w-[75%] w-full mt-12">
                 <div className="flex flex-col gap-2">
                     <input type="text" name="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Título" className="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600 focus:ring-0" required />
                     <input type="text" name="subtitle" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="Subtítulo" className="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600 focus:ring-0" />

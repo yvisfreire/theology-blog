@@ -8,7 +8,7 @@ export default async function Post({ params }) {
     const date = new Date(data.createdAt);
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center bg-gray-50">
             <div style={{ '--image-url': `url(${data.imgUrl})` }}
                 className="relative flex flex-col items-center justify-center px-4 mb-8 text-white h-96 w-full bg-cover bg-[50%_25%] bg-no-repeat bg-[image:var(--image-url)]">
                 <div className="absolute inset-0 bg-black opacity-50" />
