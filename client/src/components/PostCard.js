@@ -27,7 +27,7 @@ export default function PostCard({ post }) {
                         </p>
                     </div>
                     <div className="flex items-center gap-2">
-                        <p className="text-gray-700">4 min</p>
+                        <p className="text-gray-700">{post.readingTime} min</p>
                         <p className="text-gray-700">·</p>
                         <p className="text-gray-700">{date.toLocaleDateString()}</p>
                     </div>

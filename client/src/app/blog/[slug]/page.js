@@ -24,7 +24,7 @@ export default async function Post({ params }) {
                         </p>
                     </div>
                     <div className="flex items-center gap-2">
-                        <p className="text-gray-700 text-sm">4 min</p>
+                        <p className="text-gray-700 text-sm">{data.readingTime} min</p>
                         <p className="text-gray-700 text-sm">·</p>
                         <p className="text-gray-700 text-sm">{date.toLocaleDateString()}</p>
                     </div>

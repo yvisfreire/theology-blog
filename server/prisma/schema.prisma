@@ -27,17 +27,18 @@ model User {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  subtitle  String?
-  content   String?
-  slug      String   @unique @db.VarChar(255)
-  published Boolean  @default(false)
-  imgUrl    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  // author    User     @relation(fields: [userId], references: [id])
-  // userId    Int
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  subtitle    String?
+  content     String?
+  slug        String   @unique @db.VarChar(255)
+  published   Boolean  @default(false)
+  imgUrl      String?
+  readingTime Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  // author      User     @relation(fields: [userId], references: [id])
+  // userId      Int      @default(1)
 
   @@map("posts")
 }
