@@ -8,7 +8,7 @@ export default function PostCard({ post }) {
             <Link href={`/blog/${post.slug}`} className="flex-shrink-0">
                 <div className="relative lg:w-64 w-32 h-48">
                     <img
-                        className="absolute inset-0 w-full h-full object-cover object-[50%_25%]"
+                        className="absolute inset-0 w-full h-full rounded-xl object-cover object-[50%_25%]"
                         src={post.imgUrl || "/limoeiro-alt.jpg"}
                         alt={post.title}
                     />
