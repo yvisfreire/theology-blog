@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function PostCard({ post }) {
+export default function PostCardDashboard({ post }) {
     console.log(post.imgUrl);
 
     const date = new Date(post.createdAt);
