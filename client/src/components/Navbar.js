@@ -20,7 +20,7 @@ export default function Navbar() {
 				</ul>
 			</div>
 			<div>
-				<Link href="/" className="text-green-600 hover:bg-green-600 hover:text-white border border-green-600 px-5 py-2.5 text-sm rounded-lg transition-all">Login</Link>
+				<Link href="/login" className="text-green-600 hover:bg-green-600 hover:text-white border border-green-600 px-5 py-2.5 text-sm rounded-lg transition-all">Login</Link>
 			</div>
 		</nav>
 	);
