@@ -29,9 +29,9 @@ export default async function Post({ params }) {
                         <p className="text-gray-700 text-sm">{date.toLocaleDateString()}</p>
                     </div>
                 </div>
-                <div className="py-8 max-w-none prose prose-a:text-green-600 hover:prose-a:text-green-700 transition-all">
+                <article className="py-8 max-w-none prose prose-neutral prose-a:text-green-600 hover:prose-a:text-green-700 transition-all">
                     <MDXRemote source={data.content} />
-                </div>
+                </article>
             </div>
         </div>
     );
