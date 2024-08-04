@@ -1,6 +1,19 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/AuthContext';
 
 export default function Navbar() {
+	const { isAuthenticated, logout } = useContext(AuthContext);
+	const router = useRouter();
+
+	const handleLogout = () => {
+		logout();
+		router.push('/login');
+	};
+
 	return (
 		<nav className="flex justify-between items-center w-[92%] mx-auto py-5">
 			<div>
@@ -20,7 +33,13 @@ export default function Navbar() {
 				</ul>
 			</div>
 			<div>
-				<Link href="/login" className="text-green-600 hover:bg-green-600 hover:text-white border border-green-600 px-5 py-2.5 text-sm rounded-lg transition-all">Login</Link>
+				{isAuthenticated ? (
+					<button onClick={handleLogout} className="text-green-600 hover:bg-green-600 hover:text-white border border-green-600 px-5 py-2.5 text-sm rounded-lg transition-all">
+						Logout
+					</button>
+				) : (
+					<Link href="/login" className="text-green-600 hover:bg-green-600 hover:text-white border border-green-600 px-5 py-2.5 text-sm rounded-lg transition-all">Login</Link>
+				)}
 			</div>
 		</nav>
 	);

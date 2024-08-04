@@ -6,7 +6,7 @@ export default function PostCardDashboard({ post }) {
     const date = new Date(post.createdAt);
 
     return (
-        <div className="max-w-sm h-64 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-all">
+        <div className="max-w-64 h-64 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-all">
             <Link href={`/dashboard/write/${post.slug}`}>
                 <img className="h-32 w-64 object-cover object-[50%_25%]" src={`${post.imgUrl || "/limoeiro-alt.jpg"}`} alt={`${post.title}`} />
             </Link>

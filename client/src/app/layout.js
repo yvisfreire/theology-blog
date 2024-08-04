@@ -2,6 +2,7 @@ import { Merriweather } from "next/font/google";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -21,9 +22,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={merriweather.className}>
         <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <AuthProvider>
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </AuthProvider>
         </div>
       </body>
     </html>
