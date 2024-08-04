@@ -30,7 +30,7 @@ export default function Login() {
                 maxAge: 24 * 60 * 60 // 24 hours
             });
 
-            setCookie(undefined, 'user', data.user, {
+            setCookie(undefined, 'user', JSON.stringify(data.user), {
                 maxAge: 24 * 60 * 60 // 24 hours
             });
 
