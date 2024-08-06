@@ -11,7 +11,7 @@ const login = async (req, res) => {
     if (!user || password !== user.password)
         return res.send({ error: 'Usuário ou senha inválidos.' });
 
-    const token = jsonwebtoken.sign({ user }, process.env.JWT_PRIVATE_KEY, { expiresIn: '24h' });
+    const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_PRIVATE_KEY, { expiresIn: '24h' });
 
     return res.json({ user, token })
 }
