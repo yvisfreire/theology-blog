@@ -1,6 +1,8 @@
 'use client';
+
 import AuthContext from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import { parseCookies } from 'nookies';
 import React, { useContext, useEffect, useState } from "react";
 
 export default function EditForm({ params }) {
@@ -41,6 +43,8 @@ export default function EditForm({ params }) {
         fetchData();
     }, [slug]);
 
+    const cookeis = parseCookies();
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -53,6 +57,7 @@ export default function EditForm({ params }) {
         const response = await fetch(`http://localhost:5000/blog/${slug}`, {
             method: 'PUT',
             headers: {
+                Authorization: cookies.token,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formObject),

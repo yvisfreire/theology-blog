@@ -5,6 +5,9 @@ const getAllPosts = async (req, res) => {
     const posts = await prisma.post.findMany({
         orderBy: {
             createdAt: 'desc'
+        },
+        include: {
+            author: true
         }
     });
 
@@ -14,7 +17,12 @@ const getAllPosts = async (req, res) => {
 const getPost = async (req, res) => {
     const { slug } = req.params;
 
-    const post = await prisma.post.findUnique({ where: { slug } });
+    const post = await prisma.post.findUnique({
+        where: { slug },
+        include: {
+            author: true
+        }
+    });
 
     if (!post) return res.json({ error: "Post não encontrado." });
 

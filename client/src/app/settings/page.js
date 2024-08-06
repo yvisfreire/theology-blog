@@ -32,7 +32,6 @@ export default function Settings() {
         });
 
         const data = await response.json();
-        console.log(data);
 
         if (data.error) console.error(data.error);
         else console.log(data.message);

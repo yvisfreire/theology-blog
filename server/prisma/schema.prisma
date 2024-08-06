@@ -22,7 +22,7 @@ model User {
   profileImg String   @default("blank_profile.png")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  // Post      Post[]
+  posts      Post[]
 
   @@map("users")
 }
@@ -36,10 +36,10 @@ model Post {
   published   Boolean  @default(false)
   imgUrl      String?
   readingTime Int      @default(0)
+  userId      Int
+  author      User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  // author      User     @relation(fields: [userId], references: [id])
-  // userId      Int      @default(1)
 
   @@map("posts")
 }

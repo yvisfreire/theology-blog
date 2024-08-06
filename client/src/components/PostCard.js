@@ -21,9 +21,9 @@ export default function PostCard({ post }) {
                 </div>
                 <div className="flex justify-between text-xs">
                     <div className="flex items-center gap-2">
-                        <img src={`http://localhost:5000/images/blank-profile.png`} alt="Foto de perfil" className="h-8 w-8 rounded-full"></img>
+                        <img src={`http://localhost:5000/images/${post.author.profileImg}`} alt="Foto de perfil" className="h-8 w-8 rounded-full"></img>
                         <p className="text-gray-700">
-                            Yvis Freire
+                            {post.author.name}
                         </p>
                     </div>
                     <div className="flex items-center gap-2">

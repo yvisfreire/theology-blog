@@ -1,7 +1,9 @@
 'use client';
+
 import AuthContext from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react';
+import { parseCookies } from 'nookies';
 
 export default function Write() {
     const { isAuthenticated } = useContext(AuthContext);
@@ -12,6 +14,8 @@ export default function Write() {
             router.push('/login');
         }
     }, []);
+
+    const cookies = parseCookies();
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -25,13 +29,13 @@ export default function Write() {
         const response = await fetch('http://localhost:5000/blog', {
             method: 'POST',
             headers: {
+                Authorization: cookies.token,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formObject),
         });
 
         const data = await response.json();
-        console.log(data)
 
         if (data.error) alert(data.error);
         else router.push('/dashboard')
