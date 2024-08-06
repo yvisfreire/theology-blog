@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
 
 import { blogRouter } from './routes/blogRoutes.js';
 import { authRouter } from './routes/authRoutes.js';
@@ -9,7 +12,11 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(blogRouter);
 app.use(authRouter);
