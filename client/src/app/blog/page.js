@@ -12,6 +12,8 @@ export default function Blog() {
                 const response = await fetch('http://localhost:5000/blog');
                 const data = await response.json();
 
+                if (data.error) throw new Error(data.error);
+
                 setPosts(data);
             } catch (error) {
                 console.error('Erro ao buscar dados do post:', error);

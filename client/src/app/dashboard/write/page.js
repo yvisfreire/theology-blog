@@ -1,9 +1,17 @@
 'use client';
+import AuthContext from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 export default function Write() {
+    const { isAuthenticated } = useContext(AuthContext);
     const router = useRouter();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/login');
+        }
+    }, []);
 
     const onSubmit = async (e) => {
         e.preventDefault();

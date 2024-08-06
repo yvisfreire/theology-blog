@@ -1,8 +1,12 @@
 'use client';
+import AuthContext from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 export default function EditForm({ params }) {
+    const { isAuthenticated } = useContext(AuthContext);
+    const router = useRouter();
+
     const { slug } = params;
     const [formData, setFormData] = useState({
         title: '',
@@ -12,9 +16,11 @@ export default function EditForm({ params }) {
         published: false
     });
 
-    const router = useRouter();
-
     useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/login');
+        }
+
         async function fetchData() {
             try {
                 const response = await fetch(`http://localhost:5000/blog/${slug}`);
