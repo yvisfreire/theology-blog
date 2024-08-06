@@ -60,7 +60,7 @@ export default function EditForm({ params }) {
 
         const data = await response.json();
 
-        if (data.error) alert(data.error);
+        if (data.error) console.error(data.error);
         else router.push('/dashboard');
     }
 

@@ -17,8 +17,8 @@ export default async function Post({ params }) {
             </div>
             <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-12">
                 <div className="flex justify-between w-full">
-                    <div className="flex items-center gap-2">
-                        <img src="/blank-profile.png" alt="Foto de perfil" className="h-10 w-10 rounded-full"></img>
+                    <div className="flex items-center gap-3">
+                        <img src={`http://localhost:5000/images/blank-profile.png`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
                         <p className="text-gray-700 text-sm">
                             Yvis Freire
                         </p>

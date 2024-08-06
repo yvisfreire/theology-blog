@@ -7,6 +7,7 @@ import path from 'path';
 
 import { blogRouter } from './routes/blogRoutes.js';
 import { authRouter } from './routes/authRoutes.js';
+import { userRouter } from './routes/userRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(blogRouter);
 app.use(authRouter);
+app.use(userRouter);
 
 app.get('/', (req, res) => {
     res.send('Foi');

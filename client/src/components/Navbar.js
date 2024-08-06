@@ -9,7 +9,7 @@ export default function Navbar() {
 	const { isAuthenticated } = useContext(AuthContext);
 
 	return (
-		<nav className="flex justify-between items-center w-full px-12 py-5">
+		<nav className="flex justify-between items-center w-full px-12 py-4">
 			<div>
 				<Link href="/" className="text-lg font-bold hover:text-green-600 transition-all">TeoLima</Link>
 			</div>

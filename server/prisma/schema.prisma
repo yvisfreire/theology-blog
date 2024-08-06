@@ -14,13 +14,14 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  name      String?  @db.VarChar(255)
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  email      String   @unique
+  name       String?  @db.VarChar(255)
+  password   String
+  profileImg String   @default("blank_profile.png")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   // Post      Post[]
 
   @@map("users")
