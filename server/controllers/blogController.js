@@ -44,7 +44,8 @@ const createPost = async (req, res) => {
             content,
             published,
             readingTime,
-            slug: slugify(title, { lower: true })
+            slug: slugify(title, { lower: true }),
+            userId: req.user.id
         }
     });
 
