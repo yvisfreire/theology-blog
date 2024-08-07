@@ -3,7 +3,7 @@ import multer from 'multer';
 import auth from '../middlewares/auth.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { prisma } from "../database/index.js";
+import * as userController from '../controllers/userController.js'
 
 const userRouter = Router();
 
@@ -22,15 +22,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-userRouter.post('/user/profile', auth, upload.single('profile'), async (req, res) => {
-    const user = await prisma.user.update({
-        where: { id: req.user.id },
-        data: { profileImg: req.filename }
-    });
-
-    if (!user) return res.json({ error: "Usuário nao encontrado." });
-
-    res.json({ message: "Upload realizado com sucesso." });
-});
+userRouter.get('/users', userController.getAllUsers);
+userRouter.get('/users/:username', userController.getUser);
+userRouter.put('/users/:username', auth, userController.updateUser);
+userRouter.delete('/users/:username', auth, userController.deleteUser);
+userRouter.post('/users/profile', auth, upload.single('profile'), userController.profileUpload);
 
 export { userRouter };
