@@ -1,20 +1,23 @@
 'use client';
 
 import PostCardDashboard from "@/components/PostCardDashboard";
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "@/contexts/AuthContext";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { parseCookies } from "nookies";
 
 export default function Dashboard() {
-    const { isAuthenticated } = useContext(AuthContext);
     const router = useRouter();
+    const cookies = parseCookies();
 
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        const token = cookies.token;
+
+        if (!token) {
             router.push('/login');
+            return;
         }
 
         async function fetchData() {
@@ -31,7 +34,7 @@ export default function Dashboard() {
         }
 
         fetchData();
-    }, []);
+    }, [cookies.token]);
 
     const postCards = posts.map(post => <PostCardDashboard key={post.id} post={post} />)
     return (

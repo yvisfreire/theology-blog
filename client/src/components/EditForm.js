@@ -43,7 +43,7 @@ export default function EditForm({ params }) {
         fetchData();
     }, [slug]);
 
-    const cookeis = parseCookies();
+    const cookies = parseCookies();
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -70,13 +70,32 @@ export default function EditForm({ params }) {
     }
 
     return (
-        <div className="flex justify-center bg-gray-50">
-            <form onSubmit={onSubmit} className="px-8 lg:w-[60%] md:w-[75%] w-full mt-12">
-                <div className="flex flex-col gap-2">
-                    <input type="text" name="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Título" className="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600 focus:ring-0" required />
-                    <input type="text" name="subtitle" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="Subtítulo" className="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600 focus:ring-0" />
-                    <input type="text" name="imgUrl" value={formData.imgUrl} onChange={(e) => setFormData({ ...formData, imgUrl: e.target.value })} placeholder="URL da imagem" className="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600 focus:ring-0" />
-                    <textarea name="content" value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} placeholder="Conteúdo" className="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 h-64 leading-tight focus:outline-none focus:shadow-outline focus:border-green-600 focus:ring-0"></textarea>
+        <div className="flex flex-col items-center bg-gray-50">
+            <div className="relative flex flex-col items-center justify-center px-4 mb-8 text-white h-96 w-full bg-cover bg-[50%_45%] bg-no-repeat bg-[url('/escrevendo.gif')]">
+                <div className="absolute inset-0 bg-black opacity-50" />
+                <h1 className="relative text-center text-4xl font-black leading-none pt-5">Editar</h1>
+                <p className="relative text-center text-gray-300"></p>
+            </div>
+            <div className="w-full xl:px-64 md:px-32 sm:px-24 px-4">
+                <form onSubmit={onSubmit} className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900">Título</label>
+                        <input type="text" name="title" id="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Título" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
+                    </div>
+                    <div className="flex gap-6">
+                        <div className="w-full">
+                            <label htmlFor="subtitle" className="block mb-2 text-sm font-medium text-gray-900">Subítulo</label>
+                            <input type="text" name="subtitle" id="subtitle" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="Subtítulo" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
+                        </div>
+                        <div className="w-full">
+                            <label htmlFor="imgUrl" className="block mb-2 text-sm font-medium text-gray-900">URL da imagem</label>
+                            <input type="text" name="imgUrl" id="imgUrl" value={formData.imgUrl} onChange={(e) => setFormData({ ...formData, imgUrl: e.target.value })} placeholder="URL da imagem" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
+                        </div>
+                    </div>
+                    <div>
+                        <label htmlFor="content" className="block mb-2 text-sm font-medium text-gray-900">Conteúdo</label>
+                        <textarea name="content" id="content" value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} placeholder="Conteúdo" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg h-64 focus:ring-green-600 focus:border-green-600 block w-full p-2.5"></textarea>
+                    </div>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <label htmlFor="published" className="text-sm">Público?</label>
@@ -84,8 +103,8 @@ export default function EditForm({ params }) {
                         </div>
                         <button className="shadow text-white text-sm bg-green-600 px-5 py-2.5 rounded-lg hover:bg-green-700 transition-all">Salvar</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     );
 }
