@@ -7,5 +7,6 @@ const authRouter = Router();
 authRouter.post('/login', authController.login);
 authRouter.post('/register', auth, authController.register);
 authRouter.put('/passChange', auth, authController.changePassword);
+authRouter.get('/init', authController.initUser)
 
 export { authRouter };

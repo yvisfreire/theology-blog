@@ -53,8 +53,42 @@ const changePassword = async (req, res) => {
     return res.json({ message: "Senha alterada com sucesso." })
 }
 
+const initUser = async (req, res) => {
+    try {
+        const users = await prisma.user.findMany();
+
+        if (users.length > 0) {
+            return res.send({ error: "Os dados do servidor já foram inicializados." });
+        }
+
+        const data = {
+            username: 'admin',
+            email: 'admin@mail.com',
+            name: 'Admin da Silva',
+            password: 'admin' // Definindo a senha aqui
+        };
+
+        const hash = await bcrypt.hash(data.password, saltRounds);
+
+        const user = await prisma.user.create({
+            data: {
+                name: data.name,
+                username: data.username,
+                email: data.email,
+                password: hash
+            }
+        });
+
+        return res.json({ message: "Usuário cadastrado com sucesso." });
+    } catch (error) {
+        console.error("Erro ao inicializar o usuário:", error);
+        return res.status(500).send({ error: "Erro ao inicializar o servidor." });
+    }
+}
+
 export {
     login,
     register,
-    changePassword
+    changePassword,
+    initUser
 };
