@@ -1,13 +1,21 @@
 'use client';
 
-import { setCookie } from 'nookies';
+import { parseCookies, setCookie } from 'nookies';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
-import AuthContext from '@/contexts/AuthContext';
+import { useEffect } from 'react';
 
 export default function Login() {
-    const { setIsAuthenticated } = useContext(AuthContext);
     const router = useRouter();
+    const cookies = parseCookies();
+
+    useEffect(() => {
+        const token = cookies.token;
+
+        if (token) {
+            router.push('/dashboard');
+            return;
+        }
+    }, [cookies.token, router]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +42,6 @@ export default function Login() {
                 maxAge: 24 * 60 * 60 // 24 hours
             });
 
-            setIsAuthenticated(true);
             router.push('/dashboard');
         }
     }

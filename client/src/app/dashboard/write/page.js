@@ -6,16 +6,18 @@ import React, { useContext, useEffect } from 'react';
 import { parseCookies } from 'nookies';
 
 export default function Write() {
-    const { isAuthenticated } = useContext(AuthContext);
     const router = useRouter();
+    const cookies = parseCookies();
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        const token = cookies.token;
+
+        if (!token) {
             router.push('/login');
+            return;
         }
     }, []);
 
-    const cookies = parseCookies();
 
     const onSubmit = async (e) => {
         e.preventDefault();

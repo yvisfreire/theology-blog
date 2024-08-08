@@ -1,13 +1,12 @@
 'use client';
 
-import AuthContext from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { parseCookies } from 'nookies';
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function EditForm({ params }) {
-    const { isAuthenticated } = useContext(AuthContext);
     const router = useRouter();
+    const cookies = parseCookies();
 
     const { slug } = params;
     const [formData, setFormData] = useState({
@@ -19,8 +18,11 @@ export default function EditForm({ params }) {
     });
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        const token = cookies.token;
+
+        if (!token) {
             router.push('/login');
+            return;
         }
 
         async function fetchData() {
@@ -42,8 +44,6 @@ export default function EditForm({ params }) {
 
         fetchData();
     }, [slug]);
-
-    const cookies = parseCookies();
 
     const onSubmit = async (e) => {
         e.preventDefault();
