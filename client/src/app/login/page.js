@@ -50,11 +50,11 @@ export default function Login() {
                         <form onSubmit={onSubmit} className="space-y-4 md:space-y-6">
                             <div>
                                 <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">Usuário</label>
-                                <input type="username" name="username" id="username" placeholder="st.paul" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="text" name="username" id="username" placeholder="st.paul" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Senha</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                             <button type="submit" className="w-full shadow text-white text-sm text-center bg-green-600 px-5 py-2.5 rounded-lg hover:bg-green-700 transition-all">Entrar</button>
                         </form>

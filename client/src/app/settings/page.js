@@ -23,6 +23,7 @@ export default function Settings() {
             router.push('/login');
             return;
         }
+
         const fetchData = async () => {
             try {
                 const response = await fetch(`http://localhost:5000/users/${user.username}`);
@@ -170,17 +171,17 @@ export default function Settings() {
                         <div className="flex gap-6">
                             <div className="w-full">
                                 <label htmlFor="username_edit" className="block mb-2 text-sm font-medium text-gray-900">Usuário</label>
-                                <input type="username" name="username" value={formUserData.username} onChange={(e) => setFormUserData({ ...formUserData, username: e.target.value })} id="username_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="text" name="username" value={formUserData.username} onChange={(e) => setFormUserData({ ...formUserData, username: e.target.value })} id="username_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                             <div className="w-full">
                                 <label htmlFor="email_edit" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="email" name="email" value={formUserData.email} onChange={(e) => setFormUserData({ ...formUserData, email: e.target.value })} id="email_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" reqired />
+                                <input type="email" name="email" value={formUserData.email} onChange={(e) => setFormUserData({ ...formUserData, email: e.target.value })} id="email_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" reqired />
                             </div>
                         </div>
                         <div className="flex">
                             <div className="grow">
                                 <label htmlFor="name_edit" className="block mb-2 text-sm font-medium text-gray-900">Nome</label>
-                                <input type="text" name="name" value={formUserData.name} onChange={(e) => setFormUserData({ ...formUserData, name: e.target.value })} id="name_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                                <input type="text" name="name" value={formUserData.name} onChange={(e) => setFormUserData({ ...formUserData, name: e.target.value })} id="name_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
                             </div>
                         </div>
                         <div className="flex justify-end">
@@ -194,11 +195,11 @@ export default function Settings() {
                         <div className="flex gap-6">
                             <div className="w-full">
                                 <label htmlFor="password_edit" className="block mb-2 text-sm font-medium text-gray-900">Nova senha</label>
-                                <input type="password" name="password" id="password_edit" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="password" name="password" id="password_edit" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                             <div className="w-full">
                                 <label htmlFor="check_password_edit" className="block mb-2 text-sm font-medium text-gray-900">Confirmar nova senha</label>
-                                <input type="password" name="check_password" id="check_password_edit" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="password" name="check_password" id="check_password_edit" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                         </div>
                         <div className="flex justify-end">
@@ -212,27 +213,27 @@ export default function Settings() {
                         <div className="flex gap-6">
                             <div className="w-full">
                                 <label htmlFor="username_new" className="block mb-2 text-sm font-medium text-gray-900">Usuário</label>
-                                <input type="username" name="username" id="username_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="text" name="username" id="username_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                             <div className="w-full">
                                 <label htmlFor="email_new" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="email" name="email" id="email_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" reqired />
+                                <input type="email" name="email" id="email_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" reqired />
                             </div>
                         </div>
                         <div className="flex">
                             <div className="grow">
                                 <label htmlFor="name_new" className="block mb-2 text-sm font-medium text-gray-900">Nome</label>
-                                <input type="username" name="username" id="name_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                                <input type="text" name="name" id="name_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
                             </div>
                         </div>
                         <div className="flex gap-6">
                             <div className="w-full">
                                 <label htmlFor="password_new" className="block mb-2 text-sm font-medium text-gray-900">Nova senha</label>
-                                <input type="password" name="password" id="password_new" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="password" name="password" id="password_new" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                             <div className="w-full">
                                 <label htmlFor="check_password_new" className="block mb-2 text-sm font-medium text-gray-900">Confirmar nova senha</label>
-                                <input type="password" name="check_password" id="check_password_new" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                                <input type="password" name="check_password" id="check_password_new" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                         </div>
                         <div className="flex justify-end">
