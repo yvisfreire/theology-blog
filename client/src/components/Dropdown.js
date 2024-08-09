@@ -30,7 +30,7 @@ export default function Dropdown() {
         <div>
             <button onClick={toggle} className="flex mx-5 text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-green-500" type="button">
                 <span className="sr-only">Open user menu</span>
-                <img className="w-10 h-10 rounded-full" src={`http://localhost:5000/images/${user.profileImg}`} alt="Profile picture" />
+                <img className="w-10 h-10 rounded-full" src={`${process.env.NEXT_PUBLIC_API_URL}/images/${user.profileImg}`} alt="Profile picture" />
             </button>
             <div className={`text-gray-700 absolute top-20 right-2 z-10 ${transClass} flex-col bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}>
                 <ul className="py-2 text-sm">

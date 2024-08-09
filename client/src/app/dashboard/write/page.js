@@ -28,7 +28,7 @@ export default function Write() {
         if (!formObject.published) formObject.published = false;
         else formObject.published = true;
 
-        const response = await fetch('http://localhost:5000/blog', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog`, {
             method: 'POST',
             headers: {
                 Authorization: cookies.token,

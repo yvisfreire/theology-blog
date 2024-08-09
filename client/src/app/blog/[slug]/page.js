@@ -2,7 +2,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export default async function Post({ params }) {
     const { slug } = params;
-    const response = await fetch(`http://localhost:5000/blog/${slug}`, { cache: 'no-store' });
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, { cache: 'no-store' });
     const post = await response.json();
 
     const date = new Date(post.createdAt);
@@ -18,7 +18,7 @@ export default async function Post({ params }) {
             <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-12">
                 <div className="flex justify-between w-full">
                     <div className="flex items-center gap-3">
-                        <img src={`http://localhost:5000/images/${post.author.profileImg}`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
+                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/images/${post.author.profileImg}`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
                         <p className="text-gray-700">
                             {post.author.name}
                         </p>

@@ -27,7 +27,7 @@ export default function EditForm({ params }) {
 
         async function fetchData() {
             try {
-                const response = await fetch(`http://localhost:5000/blog/${slug}`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`);
                 const data = await response.json();
 
                 setFormData({
@@ -54,7 +54,7 @@ export default function EditForm({ params }) {
         if (!formObject.published) formObject.published = false;
         else formObject.published = true;
 
-        const response = await fetch(`http://localhost:5000/blog/${slug}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, {
             method: 'PUT',
             headers: {
                 Authorization: cookies.token,

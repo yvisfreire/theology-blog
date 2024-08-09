@@ -26,7 +26,7 @@ export default function Settings() {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/users/${user.username}`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${user.username}`);
                 if (response.ok) {
                     const data = await response.json();
 
@@ -53,7 +53,7 @@ export default function Settings() {
 
         const formData = new FormData(e.currentTarget);
 
-        const response = await fetch(`http://localhost:5000/user/profile`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/profile`, {
             method: 'POST',
             body: formData,
             headers: {
@@ -73,7 +73,7 @@ export default function Settings() {
         const formData = new FormData(e.currentTarget);
         let formObject = Object.fromEntries(formData.entries());
 
-        const response = await fetch(`http://localhost:5000/users/${user.username}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${user.username}`, {
             method: 'PUT',
             headers: {
                 Authorization: cookies.token,
@@ -101,7 +101,7 @@ export default function Settings() {
         let formObject = Object.fromEntries(formData.entries());
         delete formObject.check_password;
 
-        const response = await fetch('http://localhost:5000/passChange', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/passChange`, {
             method: 'PUT',
             headers: {
                 Authorization: cookies.token,
@@ -130,7 +130,7 @@ export default function Settings() {
 
         console.log(formObject);
 
-        const response = await fetch('http://localhost:5000/register', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
             method: 'POST',
             headers: {
                 Authorization: cookies.token,
@@ -154,7 +154,7 @@ export default function Settings() {
                 <div className="mb-8">
                     <h3 className="text-2xl font-black leading-none my-5">Foto de perfil</h3>
                     <div className="flex items-center gap-6">
-                        <img className="w-12 h-12 rounded-full" src={`http://localhost:5000/images/${user.profileImg}`} alt="Profile picture" />
+                        <img className="w-12 h-12 rounded-full" src={`${process.env.NEXT_PUBLIC_API_URL}/images/${user.profileImg}`} alt="Profile picture" />
                         <form onSubmit={onSubmitProfile} className="flex items-center gap-6 grow">
                             <div className="grow">
                                 <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="file_input">Upload imagem</label>

@@ -11,7 +11,7 @@ export default function PostCardDashboard({ post }) {
             <div className="flex flex-col flex-grow justify-between h-32 px-4 py-4">
                 <Link href={`/dashboard/write/${post.slug}`} className="font-bold text-sm mb-2">{post.title}</Link>
                 <div className="flex justify-center items-center gap-2">
-                    <img src={`http://localhost:5000/images/${post.author.profileImg}`} alt="Profile picture" className="h-8 w-8 rounded-full"></img>
+                    <img src={`${process.env.NEXT_PUBLIC_API_URL}/images/${post.author.profileImg}`} alt="Profile picture" className="h-8 w-8 rounded-full"></img>
                     <p className="text-gray-700 text-xs">
                         {post.author.name}
                     </p>

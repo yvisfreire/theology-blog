@@ -22,7 +22,7 @@ export default function Dashboard() {
 
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:5000/blog');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog`);
                 const data = await response.json();
 
                 if (data.error) throw new Error(data.error);
