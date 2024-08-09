@@ -14,17 +14,27 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  username   String   @unique
-  email      String   @unique
-  name       String?  @db.VarChar(255)
+  id         Int         @id @default(autoincrement())
+  username   String      @unique
+  email      String      @unique
+  name       String?     @db.VarChar(255)
   password   String
-  profileImg String   @default("blank_profile.png")
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
   posts      Post[]
+  ProfileImg ProfileImg?
 
   @@map("users")
+}
+
+model ProfileImg {
+  id       Int    @id @default(autoincrement())
+  image    Bytes
+  type     String
+  username String @unique
+  user     User   @relation(fields: [username], references: [username])
+
+  @@map("profile_img")
 }
 
 model Post {

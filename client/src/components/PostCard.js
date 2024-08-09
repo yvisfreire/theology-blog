@@ -1,7 +1,14 @@
 import Link from "next/link";
+import { parseCookies } from "nookies";
+import { useState } from "react";
 
 export default function PostCard({ post }) {
     const date = new Date(post.createdAt);
+
+    const [imgSrc, setImgSrc] = useState(`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`);
+    const handleImageError = () => {
+        setImgSrc('/blank-profile.png');
+    };
 
     return (
         <div className="flex items-start h-48 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-all">
@@ -21,7 +28,7 @@ export default function PostCard({ post }) {
                 </div>
                 <div className="flex justify-between text-xs">
                     <div className="flex items-center gap-2">
-                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/images/${post.author.profileImg}`} alt="Foto de perfil" className="h-8 w-8 rounded-full"></img>
+                        <img src={imgSrc} onError={handleImageError} alt="Foto de perfil" className="h-8 w-8 rounded-full"></img>
                         <p className="text-gray-700">
                             {post.author.name}
                         </p>

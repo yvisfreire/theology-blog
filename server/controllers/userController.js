@@ -47,15 +47,65 @@ const deleteUser = async (req, res) => {
     return res.json({ message: "Usuário deletado." });
 }
 
+const getProfileImg = async (req, res) => {
+    const { username } = req.params;
+
+    try {
+        const img = await prisma.profileImg.findUnique({ where: { username } });
+        if (img) {
+            res.set('Content-Type', `image/${img.type}`);
+            return res.send(img.image)
+        } else {
+            return res.status(404).send({ error: "Imagem não encontrada." });
+        }
+    } catch (err) {
+        console.error(err)
+        return res.send({ error: "Erro ao recuperar a imagem." })
+    }
+}
+
+function extractImageType(file) {
+    const mimeType = file.mimetype;
+
+    if (mimeType === 'image/png') return 'png';
+    if (mimeType === 'image/jpeg') return 'jpeg';
+    if (mimeType === 'image/jpg') return 'jpg';
+    if (mimeType === 'image/gif') return 'gif';
+
+    throw new Error('Tipo de imagem não suportado. Use png, jpg, jpeg ou gif.');
+}
+
 const profileUpload = async (req, res) => {
-    const user = await prisma.user.update({
-        where: { id: req.user.id },
-        data: { profileImg: req.filename }
-    });
+    const { username } = req.user;
 
-    if (!user) return res.json({ error: "Usuário nao encontrado." });
+    try {
+        const profileImg = await prisma.profileImg.findUnique({ where: { username } })
 
-    res.json({ message: "Upload realizado com sucesso." });
+        if (!profileImg) {
+            const fileType = extractImageType(req.file);
+            await prisma.profileImg.create({
+                data: {
+                    image: req.file.buffer,
+                    type: fileType,
+                    username
+                }
+            });
+        } else {
+            const fileType = extractImageType(req.file);
+            await prisma.profileImg.update({
+                where: { username },
+                data: {
+                    image: req.file.buffer,
+                    type: fileType,
+                }
+            });
+        }
+
+        return res.json({ message: "Upload realizado com sucesso." });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Erro ao salvar a imagem. " + err.message });
+    }
 }
 
 export {
@@ -63,5 +113,6 @@ export {
     getAllUsers,
     updateUser,
     deleteUser,
+    getProfileImg,
     profileUpload
 }

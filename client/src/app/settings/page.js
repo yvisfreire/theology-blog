@@ -145,6 +145,11 @@ export default function Settings() {
         else alert("Usuário criado com sucesso.");
     }
 
+    const [imgSrc, setImgSrc] = useState(`${process.env.NEXT_PUBLIC_API_URL}/users/${user.username}/profileImg`);
+    const handleImageError = () => {
+        setImgSrc('/blank-profile.png');
+    };
+
     return (
         <div className="bg-gray-50">
             <div className="py-12">
@@ -154,7 +159,7 @@ export default function Settings() {
                 <div className="mb-8">
                     <h3 className="text-2xl font-black leading-none my-5">Foto de perfil</h3>
                     <div className="flex items-center gap-6">
-                        <img className="w-12 h-12 rounded-full" src={`${process.env.NEXT_PUBLIC_API_URL}/images/${user?.profileImg}`} alt="Profile picture" />
+                        <img className="w-12 h-12 rounded-full" src={imgSrc} alt="Profile picture" onError={handleImageError} />
                         <form onSubmit={onSubmitProfile} className="flex items-center gap-6 grow">
                             <div className="grow">
                                 <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="file_input">Upload imagem</label>

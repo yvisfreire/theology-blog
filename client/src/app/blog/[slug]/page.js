@@ -18,7 +18,7 @@ export default async function Post({ params }) {
             <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-12">
                 <div className="flex justify-between w-full">
                     <div className="flex items-center gap-3">
-                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/images/${post.author.profileImg}`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
+                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
                         <p className="text-gray-700">
                             {post.author.name}
                         </p>
