@@ -33,7 +33,7 @@ export default function Dropdown() {
 
     return (
         <div>
-            <button onClick={toggle} className="flex mx-5 text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-green-500" type="button">
+            <button onClick={toggle} className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-green-500" type="button">
                 <span className="sr-only">Open user menu</span>
                 <img className="w-10 h-10 rounded-full" src={imgSrc} alt="Profile picture" onError={handleImageError} />
             </button>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { parseCookies } from "nookies";
 import { useState } from "react";
 
 export default function PostCard({ post }) {
@@ -11,9 +10,9 @@ export default function PostCard({ post }) {
     };
 
     return (
-        <div className="flex items-start h-48 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-all">
-            <Link href={`/blog/${post.slug}`} className="flex-shrink-0">
-                <div className="relative lg:w-64 w-32 h-48">
+        <div className="flex flex-col md:flex-row items-start h-auto md:h-48 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-all">
+            <Link href={`/blog/${post.slug}`} className="w-full md:w-64 h-48 flex-shrink-0">
+                <div className="relative w-full h-full">
                     <img
                         className="absolute inset-0 w-full h-full rounded-xl object-cover object-[50%_25%]"
                         src={post.imgUrl || "/limoeiro-alt.jpg"}
@@ -26,14 +25,14 @@ export default function PostCard({ post }) {
                     <Link href={`/blog/${post.slug}`} className="font-bold text-lg mb-1">{post.title}</Link>
                     <p className="text-gray-600 text-sm mb-2">{post.subtitle}</p>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex items-center justify-between gap-4 md:flex-row text-xs">
                     <div className="flex items-center gap-2">
                         <img src={imgSrc} onError={handleImageError} alt="Foto de perfil" className="h-8 w-8 rounded-full"></img>
                         <p className="text-gray-700">
                             {post.author.name}
                         </p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mt-2 md:mt-0">
                         <p className="text-gray-700">{post.readingTime} min</p>
                         <p className="text-gray-700">·</p>
                         <p className="text-gray-700">{date.toLocaleDateString()}</p>
