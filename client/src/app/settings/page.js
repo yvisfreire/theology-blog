@@ -16,6 +16,11 @@ export default function Settings() {
         name: '',
     });
 
+    const [imgSrc, setImgSrc] = useState('');
+    const handleImageError = () => {
+        setImgSrc('/blank-profile.png');
+    };
+
     useEffect(() => {
         const token = cookies.token;
 
@@ -23,6 +28,8 @@ export default function Settings() {
             router.push('/login');
             return;
         }
+
+        setImgSrc(`${process.env.NEXT_PUBLIC_API_URL}/users/${user.username}/profileImg`); // set image source after cookies are loaded
 
         const fetchData = async () => {
             try {
@@ -144,11 +151,6 @@ export default function Settings() {
         if (data.error) alert(data.error);
         else alert("Usuário criado com sucesso.");
     }
-
-    const [imgSrc, setImgSrc] = useState(`${process.env.NEXT_PUBLIC_API_URL}/users/${user.username}/profileImg`);
-    const handleImageError = () => {
-        setImgSrc('/blank-profile.png');
-    };
 
     return (
         <div className="bg-gray-50">
