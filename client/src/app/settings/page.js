@@ -53,7 +53,7 @@ export default function Settings() {
 
         const formData = new FormData(e.currentTarget);
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/profile`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/profile`, {
             method: 'POST',
             body: formData,
             headers: {
