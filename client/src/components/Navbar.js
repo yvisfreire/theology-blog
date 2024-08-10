@@ -22,7 +22,7 @@ export default function Navbar() {
 				</button>
 				<Link href="/" className="text-lg font-bold hover:text-green-600 transition-all mx-auto md:mx-0">TeoLima</Link>
 				{isAuthenticated ? (
-					<div className="hidden md:block">
+					<div className="md:hidden">
 						<Dropdown />
 					</div>
 				) : (
