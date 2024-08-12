@@ -1,6 +1,8 @@
 # Teologia com Limonada - Fullstack Theology Blog
 This is a fullstack blog application built with Next.js and Tailwind CSS on the frontend, and Node.js with PostgreSQL on the backend.
 
+![image](https://github.com/user-attachments/assets/d1d87693-658b-4669-b3ff-defcfef04d5a)
+
 ## Live Demo
 Check out the live application [here](https://teolima.vercel.app/).
 
