@@ -15,7 +15,7 @@ export default function Navbar() {
 	};
 
 	return (
-		<nav className="flex flex-col md:flex-row justify-between items-center w-full px-5 md:px-12 py-4">
+		<nav className="flex flex-col md:flex-row justify-between items-center shadow-sm w-full px-5 md:px-12 py-4">
 			<div className="flex justify-between w-full md:w-auto items-center">
 				<button className="md:hidden text-xl w-10" onClick={toggleMenu}>
 					{menuOpen ? '✕' : '☰'}

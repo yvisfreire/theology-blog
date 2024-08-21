@@ -153,7 +153,7 @@ export default function Settings() {
     }
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <div className="py-12">
                 <h1 className="text-4xl text-center font-black leading-none">Configurações</h1>
             </div>

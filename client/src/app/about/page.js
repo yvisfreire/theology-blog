@@ -1,7 +1,7 @@
 
 export default function About() {
     return (
-        <div className="bg-gray-50">
+        <div>
             <div className="relative flex flex-col items-center justify-center text-white h-96 w-full bg-cover bg-center bg-no-repeat bg-[url('/teolima.jpeg')]">
                 <div className="absolute inset-0 bg-black opacity-50" />
                 <h1 className="relative text-4xl font-black leading-none py-5">Sobre nós</h1>

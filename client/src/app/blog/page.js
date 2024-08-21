@@ -25,7 +25,7 @@ export default function Blog() {
 
     const postCards = posts.filter(post => post.published === true).map(post => <PostCard key={post.id} post={post} />)
     return (
-        <div className="flex flex-col items-center bg-gray-50">
+        <div className="flex flex-col items-center">
             <div className="relative flex flex-col items-center justify-center px-4 mb-8 text-white h-96 w-full bg-cover bg-[50%_45%] bg-no-repeat bg-[url('/stpaul-valentin-de-boulogne.jpg')]">
                 <div className="absolute inset-0 bg-black opacity-50" />
                 <h1 className="relative text-center text-4xl font-black leading-none pt-5">Blog</h1>

@@ -20,7 +20,7 @@ export default function PostCard({ post }) {
                     />
                 </div>
             </Link>
-            <div className="flex flex-col w-full h-full justify-center gap-2 p-4">
+            <div className="flex flex-col w-full h-full justify-center gap-2.5 p-5">
                 <div>
                     <Link href={`/blog/${post.slug}`} className="font-bold text-sm md:text-base lg:text-lg mb-1">{post.title}</Link>
                     <p className="text-gray-600 text-xs md:text-sm mb-2">{post.subtitle}</p>

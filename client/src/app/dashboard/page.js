@@ -38,7 +38,7 @@ export default function Dashboard() {
 
     const postCards = posts.map(post => <PostCardDashboard key={post.id} post={post} />)
     return (
-        <div className="flex flex-col items-center bg-gray-50">
+        <div className="flex flex-col items-center">
             <div className="relative flex flex-col items-center justify-center text-white mb-8 h-96 w-full bg-cover bg-center bg-no-repeat bg-[url('/plantando.jpg')]">
                 <div className="absolute inset-0 bg-black opacity-50" />
                 <h1 className="relative text-4xl font-black leading-none pt-5">Dashboard</h1>
