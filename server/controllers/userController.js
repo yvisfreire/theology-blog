@@ -1,7 +1,11 @@
 import { prisma } from '../database/index.js';
 
 const getAllUsers = async (req, res) => {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+        orderBy: {
+            id: 'asc'
+        },
+    });
 
     return res.json(users);
 }
@@ -9,7 +13,34 @@ const getAllUsers = async (req, res) => {
 const getUser = async (req, res) => {
     const { username } = req.params;
 
-    const user = await prisma.user.findUnique({ where: { username } })
+    const user = await prisma.user.findUnique({
+        where: { username },
+        select: {
+            id: true,
+            name: true,
+            username: true,
+            email: true,
+            bio: true,
+            posts: {
+                select: {
+                    id: true,
+                    title: true,
+                    subtitle: true,
+                    slug: true,
+                    published: true,
+                    imgUrl: true,
+                    readingTime: true,
+                    createdAt: true,
+                    author: {
+                        select: {
+                            name: true,
+                            username: true
+                        }
+                    }
+                }
+            }
+        }
+    });
 
     if (!user) return res.json({ error: "Usuário não encontrado." });
 
@@ -17,7 +48,7 @@ const getUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    const { name, email, username } = req.body;
+    const { name, email, username, bio } = req.body;
 
     let user = await prisma.user.findUnique({ where: { username: req.params.username } });
 
@@ -28,7 +59,8 @@ const updateUser = async (req, res) => {
         data: {
             name,
             username,
-            email
+            email,
+            bio
         }
     });
 
@@ -79,7 +111,7 @@ const profileUpload = async (req, res) => {
     const { username } = req.user;
 
     try {
-        const profileImg = await prisma.profileImg.findUnique({ where: { username } })
+        const profileImg = await prisma.profileImg.findUnique({ where: { username } });
 
         if (!profileImg) {
             const fileType = extractImageType(req.file);

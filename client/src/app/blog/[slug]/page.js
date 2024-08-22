@@ -1,4 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import Link from 'next/link';
 
 export default async function Post({ params }) {
     const { slug } = params;
@@ -15,21 +16,21 @@ export default async function Post({ params }) {
                 <h1 className="relative text-center text-4xl font-black leading-none pt-5">{post.title}</h1>
                 <p className="relative text-center text-gray-300">{post.subtitle}</p>
             </div>
-            <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-12">
+            <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-6">
                 <div className="flex justify-between w-full">
-                    <div className="flex items-center gap-3">
+                    <Link href={`/authors/${post.author.username}`} className="flex items-center gap-3">
                         <img src={`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
-                        <p className="text-gray-700">
+                        <p className="text-green-600 hover:text-green-700 transition-all">
                             {post.author.name}
                         </p>
-                    </div>
+                    </Link>
                     <div className="flex items-center gap-2">
                         <p className="text-gray-700">{post.readingTime} min</p>
                         <p className="text-gray-700">·</p>
                         <p className="text-gray-700">{date.toLocaleDateString()}</p>
                     </div>
                 </div>
-                <article className="py-8 max-w-none prose prose-neutral prose-a:text-green-600 hover:prose-a:text-green-700 transition-all">
+                <article className="py-8 prose prose-neutral prose-a:text-green-600 hover:prose-a:text-green-700 transition-all">
                     <MDXRemote source={post.content} />
                 </article>
             </div>

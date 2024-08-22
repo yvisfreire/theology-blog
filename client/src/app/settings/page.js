@@ -14,6 +14,7 @@ export default function Settings() {
         username: '',
         email: '',
         name: '',
+        bio: ''
     });
 
     const [imgSrc, setImgSrc] = useState('');
@@ -41,6 +42,7 @@ export default function Settings() {
                         username: data.username || '',
                         email: data.email || '',
                         name: data.name || '',
+                        bio: data.bio || '',
                     });
                 } else {
                     console.error('Erro ao buscar dados do usuário:', response.statusText);
@@ -182,7 +184,7 @@ export default function Settings() {
                             </div>
                             <div className="w-full">
                                 <label htmlFor="email_edit" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="email" name="email" value={formUserData.email} onChange={(e) => setFormUserData({ ...formUserData, email: e.target.value })} id="email_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" reqired />
+                                <input type="email" name="email" value={formUserData.email} onChange={(e) => setFormUserData({ ...formUserData, email: e.target.value })} id="email_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                         </div>
                         <div className="flex">
@@ -190,6 +192,10 @@ export default function Settings() {
                                 <label htmlFor="name_edit" className="block mb-2 text-sm font-medium text-gray-900">Nome</label>
                                 <input type="text" name="name" value={formUserData.name} onChange={(e) => setFormUserData({ ...formUserData, name: e.target.value })} id="name_edit" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
                             </div>
+                        </div>
+                        <div>
+                            <label htmlFor="bio" className="block mb-2 text-sm font-medium text-gray-900">Bio</label>
+                            <textarea name="bio" placeholder="Máximo de 200 caracteres..." value={formUserData.bio} onChange={(e) => setFormUserData({ ...formUserData, bio: e.target.value })} id="bio" maxLength={200} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg h-24 focus:ring-green-600 focus:border-green-600 block w-full p-2.5"></textarea>
                         </div>
                         <div className="flex justify-end">
                             <button className="shadow text-white text-sm bg-green-600 px-5 py-2.5 rounded-lg hover:bg-green-700 transition-all">Salvar</button>
@@ -224,7 +230,7 @@ export default function Settings() {
                             </div>
                             <div className="w-full">
                                 <label htmlFor="email_new" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="email" name="email" id="email_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" reqired />
+                                <input type="email" name="email" id="email_new" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" required />
                             </div>
                         </div>
                         <div className="flex">

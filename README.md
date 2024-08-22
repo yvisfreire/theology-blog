@@ -11,7 +11,7 @@ Check out the live application [here](https://teolima.vercel.app/).
 - SEO Friendly
 
 ## To do
-- [ ] Author pages
+- [x] Author pages
 - [ ] Comments system
 - [ ] Tags system
 - [ ] Search system

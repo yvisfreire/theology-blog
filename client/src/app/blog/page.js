@@ -1,6 +1,7 @@
 'use client';
 
 import PostCard from "@/components/PostCard";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Blog() {
@@ -32,8 +33,10 @@ export default function Blog() {
                 <p className="relative text-center text-gray-300">“Theologia a Deo docetur, Deum docet, et ad Deum ducit” - Tomás de Aquino</p>
             </div>
             <div className="xl:mx-64 md:mx-32 sm:mx-24 mx-4">
-                <div className="flex items-center justify-between">
-                    <h2 className="text-3xl text-center font-black leading-none">Posts</h2>
+                <div className="flex items-center justify-center gap-8 mb-8">
+                    <Link href="/blog" className=" text-green-600 hover:text-green-700 transition-all text-center font-black leading-none">Posts</Link>
+                    <Link href="/authors" className=" text-green-600 hover:text-green-700 transition-all text-center font-black leading-none">Autores</Link>
+                    <Link href="/tags" className=" text-green-600 hover:text-green-700 transition-all text-center font-black leading-none">Tópicos</Link>
                 </div>
                 <hr className="h-px my-4 bg-gray-300 border-0"></hr>
                 <div className="grid gap-4">

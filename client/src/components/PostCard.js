@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import { useState } from "react";
 
@@ -26,12 +27,12 @@ export default function PostCard({ post }) {
                     <p className="text-gray-600 text-xs md:text-sm mb-2">{post.subtitle}</p>
                 </div>
                 <div className="flex items-center justify-between text-xs md:text-sm lg:text-xs gap-4">
-                    <div className="flex items-center gap-2">
+                    <Link href={`/authors/${post.author.username}`} className="flex items-center gap-2">
                         <img src={imgSrc} onError={handleImageError} alt="Foto de perfil" className="h-6 w-6 md:h-7 md:w-7 lg:h-6 lg:w-6 rounded-full" />
-                        <p className="text-gray-700 text-xs md:text-sm lg:text-xs">
+                        <p className="text-green-600 hover:text-green-700 transition-all text-xs md:text-sm lg:text-xs">
                             {post.author.name}
                         </p>
-                    </div>
+                    </Link>
                     <div className="flex items-center gap-2 mt-2 md:mt-0">
                         <p className="text-gray-700 text-xs md:text-sm lg:text-xs">{post.readingTime} min</p>
                         <p className="text-gray-700">·</p>
