@@ -19,7 +19,7 @@ export default async function Post({ params }) {
             <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-6">
                 <div className="flex justify-between w-full">
                     <Link href={`/authors/${post.author.username}`} className="flex items-center gap-3">
-                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`} alt="Foto de perfil" className="h-12 w-12 rounded-full"></img>
+                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`} alt="Foto de perfil" className="h-12 w-12 rounded-full border border-green-600"></img>
                         <p className="text-green-600 hover:text-green-700 transition-all">
                             {post.author.name}
                         </p>

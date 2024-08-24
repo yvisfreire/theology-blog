@@ -12,7 +12,7 @@ export default async function Author({ params }) {
         <div className="flex flex-col items-center">
             <div className="relative flex flex-col items-center justify-center text-white h-96 w-full bg-cover bg-center bg-no-repeat bg-[url('/limoeiro-alt.jpg')]">
                 <div className="absolute inset-0 bg-black opacity-50" />
-                <ProfileImage user={user} className="w-48 h-48 z-10 border-2 rounded-full" />
+                <ProfileImage user={user} className="w-48 h-48 z-10 border-2 border-green-600 rounded-full" />
                 <h1 className="relative text-center text-4xl font-black leading-none py-5">{user.name}</h1>
             </div>
             <section className=" prose text-sm my-8 sm:mx-0 mx-4">
