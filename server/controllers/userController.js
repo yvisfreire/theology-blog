@@ -36,7 +36,8 @@ const getUser = async (req, res) => {
                             name: true,
                             username: true
                         }
-                    }
+                    },
+                    tags: true
                 }
             }
         }

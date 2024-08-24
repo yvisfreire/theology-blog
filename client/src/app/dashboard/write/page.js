@@ -2,12 +2,30 @@
 
 import AuthContext from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 
 export default function Write() {
     const router = useRouter();
     const cookies = parseCookies();
+
+    const [tag, setTag] = useState({ name: "" });
+    const [selectedTags, setSelectedTags] = useState([]);
+
+    const handleTagRemove = (tag) => {
+        setSelectedTags(selectedTags.filter(t => t.name !== tag.name));
+    };
+
+    const handleTagAdd = () => {
+        if (selectedTags.map(tag => tag.name).includes(tag.name))
+            return alert("Tópico já inserido.")
+
+        if (selectedTags.length >= 5)
+            return alert("Máximo de 5 tópicos por post.");
+
+        setSelectedTags([...selectedTags, tag]);
+        setTag({ name: "" });
+    };
 
     useEffect(() => {
         const token = cookies.token;
@@ -18,12 +36,12 @@ export default function Write() {
         }
     }, []);
 
-
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         let formObject = Object.fromEntries(formData.entries());
+        formObject.tags = selectedTags;
 
         if (!formObject.published) formObject.published = false;
         else formObject.published = true;
@@ -64,6 +82,24 @@ export default function Write() {
                         <div className="w-full">
                             <label htmlFor="imgUrl" className="block mb-2 text-sm font-medium text-gray-900">URL da imagem</label>
                             <input type="text" name="imgUrl" id="imgUrl" placeholder="URL da imagem" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
+                        </div>
+                    </div>
+                    <div className="w-full">
+                        <label htmlFor="tags" className="block mb-2 text-sm font-medium text-gray-900">Tópicos (max. 5)</label>
+                        <div className="flex items-center gap-6">
+                            <input type="text" id="tags" value={tag.name} onChange={(e) => setTag({ name: e.target.value })} placeholder="Tópico" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
+                            <a onClick={handleTagAdd} className="shadow text-white text-sm bg-green-600 px-5 py-2.5 rounded-lg hover:bg-green-700 transition-all cursor-pointer">Adicionar</a>
+                        </div>
+                        <div className="flex flex-wrap gap-2 my-4">
+                            {selectedTags.map((tag, index) => (
+                                <p
+                                    key={index}
+                                    onClick={() => handleTagRemove(tag)}
+                                    className="bg-green-600 hover:bg-green-700 text-white text-xs rounded-full py-1 px-2.5 transition-all cursor-pointer"
+                                >
+                                    {tag.name} ✕
+                                </p>
+                            ))}
                         </div>
                     </div>
                     <div>

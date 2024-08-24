@@ -51,6 +51,15 @@ model Post {
   author      User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  tags        Tag[]
 
   @@map("posts")
+}
+
+model Tag {
+  name  String
+  slug  String @id
+  posts Post[]
+
+  @@map("tags")
 }

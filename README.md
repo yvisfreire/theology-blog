@@ -15,7 +15,7 @@ Check out the live application [here](https://teolima.vercel.app/).
 ## To do
 - [x] Author pages
 - [ ] Comments system
-- [ ] Tags system
+- [x] Tags system
 - [ ] Search system
 - [ ] Email subscription system
 - [ ] Better SEO

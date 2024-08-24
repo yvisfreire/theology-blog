@@ -4,18 +4,29 @@ import { useRouter } from 'next/navigation';
 import { parseCookies } from 'nookies';
 import React, { useEffect, useState } from "react";
 
-export default function EditForm({ params }) {
+export default function EditForm({ post }) {
     const router = useRouter();
     const cookies = parseCookies();
 
-    const { slug } = params;
-    const [formData, setFormData] = useState({
-        title: '',
-        subtitle: '',
-        imgUrl: '',
-        content: '',
-        published: false
-    });
+    const [formData, setFormData] = useState(post);
+
+    const [tag, setTag] = useState({ name: "" });
+    const [selectedTags, setSelectedTags] = useState(post ? post.tags : []);
+
+    const handleTagRemove = (tag) => {
+        setSelectedTags(selectedTags.filter(t => t.name !== tag.name));
+    };
+
+    const handleTagAdd = () => {
+        if (selectedTags.map(tag => tag.name).includes(tag.name))
+            return alert("Tópico já inserido.")
+
+        if (selectedTags.length >= 5)
+            return alert("Máximo de 5 tópicos por post.");
+
+        setSelectedTags([...selectedTags, tag]);
+        setTag({ name: "" });
+    };
 
     useEffect(() => {
         const token = cookies.token;
@@ -24,37 +35,19 @@ export default function EditForm({ params }) {
             router.push('/login');
             return;
         }
-
-        async function fetchData() {
-            try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`);
-                const data = await response.json();
-
-                setFormData({
-                    title: data.title || '',
-                    subtitle: data.subtitle || '',
-                    imgUrl: data.imgUrl || '',
-                    content: data.content || '',
-                    published: data.published || false,
-                });
-            } catch (error) {
-                console.error('Erro ao buscar dados do post:', error);
-            }
-        }
-
-        fetchData();
-    }, [slug]);
+    }, [cookies]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         let formObject = Object.fromEntries(formData.entries());
+        formObject.tags = selectedTags;
 
         if (!formObject.published) formObject.published = false;
         else formObject.published = true;
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${post.slug}`, {
             method: 'PUT',
             headers: {
                 Authorization: cookies.token,
@@ -92,6 +85,24 @@ export default function EditForm({ params }) {
                             <input type="text" name="imgUrl" id="imgUrl" value={formData.imgUrl} onChange={(e) => setFormData({ ...formData, imgUrl: e.target.value })} placeholder="URL da imagem" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
                         </div>
                     </div>
+                    <div className="w-full">
+                        <label htmlFor="tags" className="block mb-2 text-sm font-medium text-gray-900">Tópicos (max. 5)</label>
+                        <div className="flex items-center gap-6">
+                            <input type="text" id="tags" value={tag.name} onChange={(e) => setTag({ name: e.target.value })} placeholder="Tópico" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5" />
+                            <a onClick={handleTagAdd} className="shadow text-white text-sm bg-green-600 px-5 py-2.5 rounded-lg hover:bg-green-700 transition-all cursor-pointer">Adicionar</a>
+                        </div>
+                        <div className="flex flex-wrap gap-2 my-4">
+                            {selectedTags.map((tag, index) => (
+                                <p
+                                    key={index}
+                                    onClick={() => handleTagRemove(tag)}
+                                    className="bg-green-600 hover:bg-green-700 text-white text-xs rounded-full py-1 px-2.5 transition-all cursor-pointer"
+                                >
+                                    {tag.name} ✕
+                                </p>
+                            ))}
+                        </div>
+                    </div>
                     <div>
                         <label htmlFor="content" className="block mb-2 text-sm font-medium text-gray-900">Conteúdo</label>
                         <textarea name="content" id="content" value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} placeholder="Conteúdo" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg h-64 focus:ring-green-600 focus:border-green-600 block w-full p-2.5"></textarea>
@@ -104,7 +115,7 @@ export default function EditForm({ params }) {
                         <button className="shadow text-white text-sm bg-green-600 px-5 py-2.5 rounded-lg hover:bg-green-700 transition-all">Salvar</button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

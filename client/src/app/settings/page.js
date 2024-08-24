@@ -73,7 +73,7 @@ export default function Settings() {
         const data = await response.json();
 
         if (data.error) console.error(data.error);
-        else console.log(data.message);
+        else alert(data.message);
     }
 
     const onSubmitUserUpdate = async (e) => {

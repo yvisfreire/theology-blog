@@ -7,7 +7,8 @@ const getAllPosts = async (req, res) => {
             createdAt: 'desc'
         },
         include: {
-            author: true
+            author: true,
+            tags: true
         }
     });
 
@@ -20,7 +21,8 @@ const getPost = async (req, res) => {
     const post = await prisma.post.findUnique({
         where: { slug },
         include: {
-            author: true
+            author: true,
+            tags: true
         }
     });
 
@@ -30,11 +32,16 @@ const getPost = async (req, res) => {
 }
 
 const createPost = async (req, res) => {
-    const { title, subtitle, imgUrl, content, published } = req.body;
+    const { title, subtitle, imgUrl, content, published, tags } = req.body;
 
     const wpm = 265;
     const words = content.trim().split(/\s+/).length;
     const readingTime = Math.ceil(words / wpm);
+
+    // set slug to new tag objects
+    const normalizedTags = tags.map(tag => {
+        return !tag.slug ? { name: tag.name, slug: slugify(tag.name, { lower: true }) } : tag;
+    });
 
     const post = await prisma.post.create({
         data: {
@@ -45,7 +52,15 @@ const createPost = async (req, res) => {
             published,
             readingTime,
             slug: slugify(title, { lower: true }),
-            userId: req.user.id
+            userId: req.user.id,
+            tags: {
+                connectOrCreate: normalizedTags.map(tag => ({
+                    where: {
+                        slug: tag.slug
+                    },
+                    create: tag
+                }))
+            }
         }
     });
 
@@ -54,7 +69,7 @@ const createPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
     const { slug } = req.params;
-    const { title, subtitle, imgUrl, content, published } = req.body;
+    const { title, subtitle, imgUrl, content, published, tags } = req.body;
 
     let post = await prisma.post.findUnique({ where: { slug } });
 
@@ -63,6 +78,11 @@ const updatePost = async (req, res) => {
     const wpm = 265;
     const words = content.trim().split(/\s+/).length;
     const readingTime = Math.ceil(words / wpm);
+
+    // set slug to new tag objects
+    const normalizedTags = tags.map(tag => {
+        return !tag.slug ? { name: tag.name, slug: slugify(tag.name, { lower: true }) } : tag;
+    });
 
     post = await prisma.post.update({
         where: { slug },
@@ -73,7 +93,16 @@ const updatePost = async (req, res) => {
             content,
             published,
             readingTime,
-            slug: slugify(title, { lower: true })
+            slug: slugify(title, { lower: true }),
+            tags: {
+                set: [],
+                connectOrCreate: normalizedTags.map(tag => ({
+                    where: {
+                        slug: tag.slug
+                    },
+                    create: tag
+                }))
+            }
         }
     });
 

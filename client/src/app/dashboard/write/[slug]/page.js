@@ -11,6 +11,10 @@ export async function generateMetadata({ params }) {
     }
 }
 
-export default function Edit({ params }) {
-    return <EditForm params={params} />
+export default async function Edit({ params }) {
+    const { slug } = params;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, { cache: 'no-store' });
+    const post = await response.json();
+
+    return <EditForm post={post} />
 }

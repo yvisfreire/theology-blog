@@ -10,12 +10,22 @@ export default function PostCard({ post }) {
         setImgSrc('/blank-profile.png');
     };
 
+    const tagCards = post.tags.map(tag => (
+        <Link
+            key={tag.slug}
+            href={`/tags/${tag.slug}`}
+            className="bg-green-600 hover:bg-green-700 text-white text-xs rounded-full py-1 px-2.5 transition-all">
+            {tag.name}
+        </Link>
+    ));
+
     return (
-        <div className="flex flex-col md:flex-row items-start h-auto md:h-40 lg:h-32 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
-            <Link href={`/blog/${post.slug}`} className="w-full md:w-56 lg:w-48 h-32 md:h-full flex-shrink-0">
+        <div className="flex flex-col md:flex-row items-start h-auto md:h-56 lg:h-48  rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+            <Link href={`/blog/${post.slug}`} className="w-full md:w-64 lg:w-56 h-40 md:h-full flex-shrink-0">
                 <div className="relative w-full h-full">
                     <img
                         className="absolute inset-0 w-full h-full rounded-lg object-cover object-[50%_25%]"
+                        loading="lazy"
                         src={post.imgUrl || "/limoeiro-alt.jpg"}
                         alt={post.title}
                     />
@@ -23,20 +33,23 @@ export default function PostCard({ post }) {
             </Link>
             <div className="flex flex-col w-full h-full justify-center gap-2.5 p-5">
                 <div>
-                    <Link href={`/blog/${post.slug}`} className="font-bold text-sm md:text-base lg:text-lg mb-1">{post.title}</Link>
-                    <p className="text-gray-600 text-xs md:text-sm mb-2">{post.subtitle}</p>
+                    <Link href={`/blog/${post.slug}`} className="font-bold text-sm md:text-base lg:text-lg">{post.title}</Link>
+                    <p className="text-gray-600 text-xs lg:text-sm">{post.subtitle}</p>
                 </div>
-                <div className="flex items-center justify-between text-xs md:text-sm lg:text-xs gap-4">
+                <div className="flex flex-wrap gap-1">
+                    {tagCards}
+                </div>
+                <div className="flex items-center justify-between text-xs md:text-sm gap-4">
                     <Link href={`/authors/${post.author.username}`} className="flex items-center gap-2">
-                        <img src={imgSrc} onError={handleImageError} alt="Foto de perfil" className="h-6 w-6 md:h-7 md:w-7 lg:h-6 lg:w-6 rounded-full" />
-                        <p className="text-green-600 hover:text-green-700 transition-all text-xs md:text-sm lg:text-xs">
+                        <img src={imgSrc} onError={handleImageError} loading="lazy" alt="Foto de perfil" className="h-6 w-6 md:h-7 md:w-7 lg:h-9 lg:w-9 rounded-full border border-green-600" />
+                        <p className="text-green-600 hover:text-green-700 transition-all text-xs">
                             {post.author.name}
                         </p>
                     </Link>
                     <div className="flex items-center gap-2 mt-2 md:mt-0">
-                        <p className="text-gray-700 text-xs md:text-sm lg:text-xs">{post.readingTime} min</p>
+                        <p className="text-gray-700 text-xs">{post.readingTime} min</p>
                         <p className="text-gray-700">·</p>
-                        <p className="text-gray-700 text-xs md:text-sm lg:text-xs">{date.toLocaleDateString()}</p>
+                        <p className="text-gray-700 text-xs">{date.toLocaleDateString()}</p>
                     </div>
                 </div>
             </div>
