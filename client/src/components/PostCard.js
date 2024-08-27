@@ -20,8 +20,8 @@ export default function PostCard({ post }) {
     ));
 
     return (
-        <div className="flex flex-col md:flex-row items-start h-auto md:h-56 lg:h-48  rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
-            <Link href={`/blog/${post.slug}`} className="w-full md:w-64 lg:w-56 h-40 md:h-full flex-shrink-0">
+        <div className="flex flex-col md:flex-row items-start h-auto md:h-56 lg:h-48 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+            <Link href={`/blog/${post.slug}`} className="w-full md:w-72 lg:w-64 h-40 md:h-full flex-shrink-0">
                 <div className="relative w-full h-full">
                     <img
                         className="absolute inset-0 w-full h-full rounded-lg object-cover object-[50%_25%]"

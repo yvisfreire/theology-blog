@@ -6,8 +6,8 @@ const tagRouter = Router();
 
 tagRouter.get('/tags', tagController.getAllTags);
 tagRouter.get('/tags/:slug', tagController.getTag);
-tagRouter.post('/tags', tagController.createTag);
-tagRouter.put('/tags/:slug', tagController.updateTag);
-tagRouter.delete('/tags/:slug', tagController.deleteTag);
+tagRouter.post('/tags', auth, tagController.createTag);
+tagRouter.put('/tags/:slug', auth, tagController.updateTag);
+tagRouter.delete('/tags/:slug', auth, tagController.deleteTag);
 
 export { tagRouter };

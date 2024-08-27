@@ -59,7 +59,7 @@ export default function EditForm({ post }) {
         const data = await response.json();
 
         if (data.error) console.error(data.error);
-        else router.push('/dashboard');
+        else alert("Post atualizado com sucesso.");
     }
 
     return (
