@@ -18,7 +18,7 @@ const getAllPosts = async (req, res) => {
 const getPost = async (req, res) => {
     const { slug } = req.params;
 
-    const post = await prisma.post.findUnique({
+    let post = await prisma.post.findUnique({
         where: { slug },
         include: {
             author: true,
@@ -27,6 +27,30 @@ const getPost = async (req, res) => {
     });
 
     if (!post) return res.json({ error: "Post não encontrado." });
+
+    const previousPost = await prisma.post.findUnique({
+        where: {
+            id: post.id - 1
+        },
+        select: {
+            title: true,
+            slug: true
+        }
+    });
+
+    if (previousPost) post.previous = previousPost;
+
+    const nextPost = await prisma.post.findUnique({
+        where: {
+            id: post.id + 1
+        },
+        select: {
+            title: true,
+            slug: true
+        }
+    });
+
+    if (nextPost) post.next = nextPost;
 
     return res.json(post);
 }

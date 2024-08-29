@@ -1,5 +1,6 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
+import { PiArrowFatLeftFill, PiArrowFatRightFill } from "react-icons/pi";
 
 export default async function Post({ params }) {
     const { slug } = params;
@@ -42,9 +43,30 @@ export default async function Post({ params }) {
                 <article className="py-8 prose prose-neutral prose-a:text-green-600 hover:prose-a:text-green-700 prose-a:break-all transition-all">
                     <MDXRemote source={post.content} />
                 </article>
-                <div className="flex flex-wrap gap-1 items-center">
+                <div className="flex flex-wrap gap-1 items-center py-4">
                     <h4 className="font-black text-sm">Tópicos:</h4>
                     {tagCards}
+                </div>
+                <div className="flex justify-between w-full py-4 text-sm">
+                    <div className="sm:w-52 w-32">
+                        {post.previous && <Link href={`${post.previous.slug}`} className="group">
+                            <div className="flex items-center gap-1">
+                                <PiArrowFatLeftFill />
+                                <p>Anterior</p>
+                            </div>
+                            <p className="truncate text-green-600 group-hover:text-green-700 transition-all">{post.previous.title}</p>
+                        </Link>}
+                    </div>
+
+                    <div className="sm:w-52 w-32">
+                        {post.next && <Link href={`${post.next.slug}`} className="group">
+                            <div className="flex justify-end items-center gap-1">
+                                <p>Próximo</p>
+                                <PiArrowFatRightFill />
+                            </div>
+                            <p className="truncate text-end text-green-600 group-hover:text-green-700 transition-all">{post.next.title}</p>
+                        </Link>}
+                    </div>
                 </div>
             </div>
         </div>
