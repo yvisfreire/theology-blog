@@ -2,6 +2,17 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { PiArrowFatLeftFill, PiArrowFatRightFill } from "react-icons/pi";
 
+export async function generateMetadata({ params }) {
+    const { slug } = params;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, { cache: 'no-store' });
+    const data = await response.json();
+
+    return {
+        title: data.title,
+        description: data.subtitle
+    }
+}
+
 export default async function Post({ params }) {
     const { slug } = params;
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, { cache: 'no-store' });
