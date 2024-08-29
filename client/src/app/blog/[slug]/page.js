@@ -8,6 +8,15 @@ export default async function Post({ params }) {
 
     const date = new Date(post.createdAt);
 
+    const tagCards = post.tags.map(tag => (
+        <Link
+            key={tag.slug}
+            href={`/tags/${tag.slug}`}
+            className="bg-green-600 hover:bg-green-700 text-white text-xs rounded-full py-1 px-2.5 transition-all">
+            {tag.name}
+        </Link>
+    ));
+
     return (
         <div className="flex flex-col items-center">
             <div style={{ '--image-url': `url(${post.imgUrl})` }}
@@ -33,6 +42,10 @@ export default async function Post({ params }) {
                 <article className="py-8 prose prose-neutral prose-a:text-green-600 hover:prose-a:text-green-700 prose-a:break-all transition-all">
                     <MDXRemote source={post.content} />
                 </article>
+                <div className="flex flex-wrap gap-1 items-center">
+                    <h4 className="font-black text-sm">Tópicos:</h4>
+                    {tagCards}
+                </div>
             </div>
         </div>
     );
