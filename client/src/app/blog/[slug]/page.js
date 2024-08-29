@@ -17,14 +17,14 @@ export default async function Post({ params }) {
                 <p className="relative text-center text-gray-300">{post.subtitle}</p>
             </div>
             <div className="lg:mx-72 md:mx-32 sm:mx-24 mx-6">
-                <div className="flex justify-between w-full">
-                    <Link href={`/authors/${post.author.username}`} className="flex items-center gap-3">
-                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`} alt="Foto de perfil" className="h-12 w-12 rounded-full border border-green-600"></img>
+                <div className="flex justify-between w-full sm:text-base text-sm">
+                    <Link href={`/authors/${post.author.username}`} className="flex items-center sm:gap-3 gap-2">
+                        <img src={`${process.env.NEXT_PUBLIC_API_URL}/users/${post.author.username}/profileImg`} alt="Foto de perfil" className="sm:h-12 sm:w-12 h-10 w-10 rounded-full border border-green-600"></img>
                         <p className="text-green-600 hover:text-green-700 transition-all">
                             {post.author.name}
                         </p>
                     </Link>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center sm:gap-2 gap-1">
                         <p className="text-gray-700">{post.readingTime} min</p>
                         <p className="text-gray-700">·</p>
                         <p className="text-gray-700">{date.toLocaleDateString()}</p>
